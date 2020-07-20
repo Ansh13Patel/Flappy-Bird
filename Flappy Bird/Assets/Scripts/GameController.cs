@@ -43,6 +43,7 @@ public class GameController : MonoBehaviour
         gameovertext.SetActive(true);
         gameover = true;
         AdsManger.Instance.ShowInterstitialAds();
+        SceneManager.LoadScene(0);
     }
   
 }
