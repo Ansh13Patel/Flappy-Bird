@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Runtime.InteropServices.ComTypes;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -12,6 +12,7 @@ public class GameController : MonoBehaviour
     public bool gameover = false;
     private int score = 0;
     public Text Scoretext;
+    public AudioSource dieaudio;
     // Start is called before the first frame update
     void Awake()
     {
@@ -31,13 +32,17 @@ public class GameController : MonoBehaviour
         {
             return;
         }
-          score++;
-          Scoretext.text = score.ToString();
-        
+        score++;
+        Scoretext.text = "Score:- " + score.ToString();
+
     }
     public void birddie()
     {
-        gameovertext.SetActive (true);
+        dieaudio = GetComponent<AudioSource>();
+        dieaudio.Play();
+        gameovertext.SetActive(true);
         gameover = true;
+        AdsManger.Instance.ShowInterstitialAds();
     }
+  
 }
